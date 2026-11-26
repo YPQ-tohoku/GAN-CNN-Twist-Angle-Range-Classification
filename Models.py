@@ -42,16 +42,16 @@ def make_discriminator_model(raman_dim):
     model.add(layers.Input(shape=(raman_dim)))
     model.add(layers.Reshape([raman_dim, 1]))
     model.add(
-        layers.Conv1D(kernel_size=8, filters=256, activation='leaky_relu'))  # (opt) (number of filters and kernel size)
+        layers.Conv1D(kernel_size=16, filters=256, activation='leaky_relu'))  # (opt) (number of filters and kernel size)
     model.add(layers.MaxPool1D())
-    model.add(layers.Dropout(0.2))  # (opt) (dropout probability)
+    model.add(layers.Dropout(0.02))  # (opt) (dropout probability)
 
-    model.add(layers.Conv1D(kernel_size=8, filters=128))  # (opt) (number of filters and kernel size)
+    model.add(layers.Conv1D(kernel_size=16, filters=128))  # (opt) (number of filters and kernel size)
     model.add(BatchNormalization())
     model.add(LeakyReLU(alpha=0.01))
 
     model.add(layers.MaxPool1D())
-    model.add(layers.Dropout(0.2))  # (opt) (dropout probability)
+    model.add(layers.Dropout(0.02))  # (opt) (dropout probability)
 
     model.add(layers.Flatten())
     model.add(layers.Dense(64))  # (opt) (number of nodes in layer)
